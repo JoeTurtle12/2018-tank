@@ -25,7 +25,9 @@ class Bot(magicbot.MagicRobot):
         self.lr_motor = wpilib.Victor(1)
         self.rf_motor = wpilib.Victor(2)
         self.rr_motor = wpilib.Victor(3)
-        self.robot_drive = wpilib.RobotDrive(self.lf_motor, self.lr_motor, self.rf_motor, self.rr_motor)
+        self.l = wpilib.speedControllerGroup(self.lf_motor, self.lr_motor)
+        self.r = wpilib.speedControllerGroup(self.rf_motor, self.rr_motor)
+        self.robot_drive = wpilib.DifferentialDrive(self.l, self.r)
 
     def autonomous(self): pass
     def disabledPeriodic(self): pass
